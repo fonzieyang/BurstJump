@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour {
 
+    public Animator anim;
+
     public int hpMax = 10;
 
 
@@ -103,6 +105,9 @@ public class CharacterControl : MonoBehaviour {
 
         // update anim
         // TODO: using capsule first
+
+        anim.SetBool("OnGround", state == State.Stay);
+        anim.SetFloat("Jump", vSpeed);
 
         move = Vector3.zero;
     }

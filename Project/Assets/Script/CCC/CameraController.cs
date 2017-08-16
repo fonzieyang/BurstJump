@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour {
         trans = transform;
     }
 
-	void Update () {
-        trans.position = followTarget.position + cameraOffset;
+	void LateUpdate () {
+        var pos = followTarget.position + cameraOffset;
+        pos.y = cameraOffset.y;
+        trans.position = pos;
 	}
 }
