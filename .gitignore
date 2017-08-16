@@ -1,3 +1,6 @@
 Project/Library
 Project/Temp
 *.meta
+Assembly-CSharp.csproj
+Project/Project.sln
+Project/Project.userprefs
