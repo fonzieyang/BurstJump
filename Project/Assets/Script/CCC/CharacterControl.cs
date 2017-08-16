@@ -114,7 +114,7 @@ public class CharacterControl : MonoBehaviour {
 
         if (s == State.JumpUp)
         {
-            vSpeed = Mathf.Sqrt(2*jumpHeight);
+            vSpeed = Mathf.Sqrt(2*jumpHeight*g);
         }
     }
 
