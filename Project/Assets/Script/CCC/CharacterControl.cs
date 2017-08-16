@@ -126,14 +126,14 @@ public class CharacterControl : MonoBehaviour {
     void UpdatePos(Vector3 delta)
     {
         var newpos = trans.position + delta;
-        newpos.x = Mathf.Clamp(newpos.x, (float)EmemyCreator.MAP_LEFT, (float)EmemyCreator.MAP_RIGHT);
-        newpos.z = Mathf.Clamp(newpos.z, (float)EmemyCreator.MAP_LOW, (float)EmemyCreator.MAP_HIGH);
+        newpos.x = Mathf.Clamp(newpos.x, (float)EnemyCreator.MAP_LEFT, (float)EnemyCreator.MAP_RIGHT);
+        newpos.z = Mathf.Clamp(newpos.z, (float)EnemyCreator.MAP_LOW, (float)EnemyCreator.MAP_HIGH);
         newpos.y = Mathf.Max(newpos.y, 0);
         trans.position = newpos;
     }
 
     void DoHit()
     {
-        //Enemy.
+        
     }
 }

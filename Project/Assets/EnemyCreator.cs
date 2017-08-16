@@ -23,7 +23,7 @@ public class EnemyCreator : MonoBehaviour {
     public GameObject bossProto_;
     public GameObject[] enemyList_;
 
-    static public EmemyCreator instance_;
+    static public EnemyCreator instance_;
 
     // Use this for initialization
     void Start () {
