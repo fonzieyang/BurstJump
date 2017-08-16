@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour {
 
+    static public CharacterControl instance;
+
     public Animator anim;
 
     public int hpMax = 10;
@@ -30,12 +32,14 @@ public class CharacterControl : MonoBehaviour {
     int hp;
     float realHeight;
     float vSpeed;
-    Transform trans;
+    [System.NonSerialized]
+    public Transform trans;
 
     void Awake()
     {
         hp = hpMax;
         trans = transform;
+        instance = this;
     }
 
     public void Move(Vector3 m)
@@ -52,7 +56,7 @@ public class CharacterControl : MonoBehaviour {
 
         switch(state)
         {
-            case State.JumpDown:
+            case State.JumpUp:
                 {
                     vSpeed = vSpeed - g * 0.5f * deltaTime;
                     var vDelta = vSpeed * deltaTime;                       
@@ -69,7 +73,7 @@ public class CharacterControl : MonoBehaviour {
                     UpdatePos(hDelta);
                 }
                 break;
-            case State.JumpUp:
+            case State.JumpDown:
                 {
                     vSpeed = vSpeed - g * 0.5f * deltaTime;
                     var vDelta = vSpeed * deltaTime;
@@ -82,6 +86,7 @@ public class CharacterControl : MonoBehaviour {
                         pos.y = 0;
                         trans.position = pos;
                         SetState(State.Stay);
+                        ItemMgr.instance.CheckPick(pos);
                     }
                 }
                 break;
