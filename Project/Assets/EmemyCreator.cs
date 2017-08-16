@@ -39,6 +39,14 @@ public class EmemyCreator : MonoBehaviour {
 
     void EnemyKilled(GameObject enemy)
     {
-        enemy.transform.position = 
+        var pos = enemy.transform.position;
+        pos.x = Random.Range(MAP_HIGH, MAP_LOW);
+        pos.z = Random.Range(MAP_LEFT, MAP_RIGHT);
+        transform.position = pos;
+        Enemy e = enemy.GetComponent<Enemy>();
+        if (e != null)
+        {
+            e.Recreate();
+        }
     }
 }

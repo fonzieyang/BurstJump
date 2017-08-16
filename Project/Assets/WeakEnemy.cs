@@ -15,9 +15,18 @@ public class WeakEnemy : Enemy
 		
 	}
 
-    public void CheckAttack(Vector3 position, AttackInfo ai)
+    public override void CheckAttack(Vector3 position, AttackInfo ai)
     {
-        if ((position - transform.position).
+        if (ai.attackType == AttackType.normal)
+        {
+            if ((position - transform.position).magnitude< 0.5f) {
+                EnemyCreator.instance_.EnemyKilled(gameObject);
+            }
+        }
+    }
+
+    public override void Recreate()
+    {
         return;
     }
 }
