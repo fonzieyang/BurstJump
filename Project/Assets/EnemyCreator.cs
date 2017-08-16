@@ -21,7 +21,7 @@ public class EnemyCreator : MonoBehaviour {
     public GameObject attackEnemyProto_;
     public GameObject defEnenmyProto_;
     public GameObject bossProto_;
-    public GameObject[] enemyList_;
+    public List<GameObject> enemyList_ = new List<GameObject>();
 
     static public EnemyCreator instance_;
 
@@ -47,5 +47,9 @@ public class EnemyCreator : MonoBehaviour {
         {
             e.Recreate();
         }
+    }
+    public void CheckAttack(AttackInfo ai)
+    {
+
     }
 }

@@ -39,14 +39,15 @@ public class WeakEnemy : Enemy
         var t = Time.time - lastPositionUpdateTime_;
         var pos = transform.position;
         pos += movingDircetion_* t;
-        while (pos.x < EnemyCreator.MAP_LOW || pos.x > EnemyCreator.MAP_HIGH || pos.z < EnemyCreator.MAP_LEFT || pos.z > EnemyCreator.MAP_RIGHT)
+        while (pos.x < EnemyCreator.MAP_LOW + 0.1f || pos.x > EnemyCreator.MAP_HIGH - 0.1f || pos.z < EnemyCreator.MAP_LEFT+0.1f || pos.z > EnemyCreator.MAP_RIGHT + 0.1f)
         {
             UpdateDirection();
             t = Time.time - lastPositionUpdateTime_;
             pos = transform.position;
             pos += movingDircetion_ * t;
         }
-        nextDirectionUpdateTime_ = Time.time;
+        transform.position = pos;
+        lastPositionUpdateTime_ = Time.time;
     }
 
     public override void CheckAttack(AttackInfo ai)
