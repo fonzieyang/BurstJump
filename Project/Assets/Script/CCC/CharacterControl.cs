@@ -82,11 +82,8 @@ public class CharacterControl : MonoBehaviour {
                     UpdatePos(hDelta);
                     if (trans.position.y <= 0)
                     {
-                        var pos = trans.position;
-                        pos.y = 0;
-                        trans.position = pos;
                         SetState(State.Stay);
-                        ItemMgr.instance.CheckPick(pos);
+                        ItemMgr.instance.CheckPick(trans.position);
                     }
                 }
                 break;
@@ -109,8 +106,6 @@ public class CharacterControl : MonoBehaviour {
         }
 
         // update anim
-        // TODO: using capsule first
-
         anim.SetBool("OnGround", state == State.Stay);
         anim.SetFloat("Jump", vSpeed);
 
@@ -130,11 +125,15 @@ public class CharacterControl : MonoBehaviour {
 
     void UpdatePos(Vector3 delta)
     {
-        trans.position += delta;
+        var newpos = trans.position + delta;
+        newpos.x = Mathf.Clamp(newpos.x, (float)EmemyCreator.MAP_LEFT, (float)EmemyCreator.MAP_RIGHT);
+        newpos.z = Mathf.Clamp(newpos.z, (float)EmemyCreator.MAP_LOW, (float)EmemyCreator.MAP_HIGH);
+        newpos.y = Mathf.Max(newpos.y, 0);
+        trans.position = newpos;
     }
 
     void DoHit()
     {
-        
+        //Enemy.
     }
 }
