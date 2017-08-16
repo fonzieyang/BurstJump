@@ -20,7 +20,7 @@ public class WeakEnemy : Enemy
         if (ai.attackType == AttackType.normal)
         {
             if ((position - transform.position).magnitude< 0.5f) {
-                EnemyCreator.instance_.EnemyKilled(gameObject);
+                EmemyCreator.instance_.EnemyKilled(gameObject);
             }
         }
     }

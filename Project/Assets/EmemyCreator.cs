@@ -24,7 +24,7 @@ public class EmemyCreator : MonoBehaviour {
     public GameObject bossProto_;
     public GameObject[] enemyList_;
 
-    public EmemyCreator instance_;
+    static public EmemyCreator instance_;
 
     // Use this for initialization
     void Start () {
@@ -37,7 +37,7 @@ public class EmemyCreator : MonoBehaviour {
 
 	}
 
-    void EnemyKilled(GameObject enemy)
+    public void EnemyKilled(GameObject enemy)
     {
         var pos = enemy.transform.position;
         pos.x = Random.Range(MAP_HIGH, MAP_LOW);

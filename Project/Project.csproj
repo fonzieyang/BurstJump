@@ -77,6 +77,9 @@
   <ItemGroup>
     <Compile Include="Assets\Ememy.cs" />
     <Compile Include="Assets\EmemyCreator.cs" />
+    <Compile Include="Assets\Script\CCC\CameraController.cs" />
+    <Compile Include="Assets\Script\CCC\CharacterControl.cs" />
+    <Compile Include="Assets\Script\CCC\InputController.cs" />
     <Compile Include="Assets\WeakEnemy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

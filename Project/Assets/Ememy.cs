@@ -9,7 +9,7 @@ public enum AttackType
 
 public struct AttackInfo
 {
-    AttackType attackType;
+    public AttackType attackType;
 }
 
 public abstract class Enemy : MonoBehaviour
