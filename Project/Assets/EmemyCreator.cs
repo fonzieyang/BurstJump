@@ -11,8 +11,7 @@ public enum EnemyType
     boss,
 }
 
-public class EmemyCreator : MonoBehaviour {
-
+public class EnemyCreator : MonoBehaviour {
     public const int MAP_LOW = -50;
     public const int MAP_HIGH = 50;
     public const int MAP_LEFT = -50;
