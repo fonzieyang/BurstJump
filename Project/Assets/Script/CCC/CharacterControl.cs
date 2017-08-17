@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour {
 
     static public CharacterControl instance;
+
+    public Slider HPSlider;
 
     // config
     public Animator anim;
@@ -70,6 +73,8 @@ public class CharacterControl : MonoBehaviour {
     public void ModifyHp(int hpDelta)
     {
         hp += hpDelta;
+        HPSlider.value = hp;
+
         if (hp <= 0)
         {
             Die();
