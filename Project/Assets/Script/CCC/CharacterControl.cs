@@ -192,7 +192,7 @@ public class CharacterControl : MonoBehaviour {
                 
                 break;
             case State.JumpUp:
-                //jumpSound.Play();
+                jumpSound.Play();
                 break;
         }
 
@@ -225,13 +225,9 @@ public class CharacterControl : MonoBehaviour {
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
-<<<<<<< HEAD
-        //jumpDownSound.Play();
-=======
         jumpDownSound.Play();
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
->>>>>>> 254caa40e549a4efb60a40832e877965413433f7
 
         return EnemyCreator.instance_.CheckAttack(atk);
     }
