@@ -5,16 +5,18 @@ using UnityEngine;
 public class BreakObj : MonoBehaviour {
 
     //public ExploderObject obj;
+    public MeshExploder obj;
 
     void Start()
     {
-        //if (obj == null)
+        if (obj == null)
         {
-      //      obj = gameObject.GetComponent<ExploderObject>();
-            //if (obj == null)
-              //  obj = gameObject.AddComponent<ExploderObject>();
+            obj = gameObject.GetComponent<MeshExploder>();
+            if (obj == null)
+                obj = gameObject.AddComponent<MeshExploder>();
 
-            gameObject.isStatic = false;
+            obj.useGravity = true;
+            obj.fadeWaitTime = 4;
         }
 
         BreakMgr.instance.AddObj(this);
