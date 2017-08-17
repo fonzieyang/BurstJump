@@ -213,7 +213,7 @@ public class CharacterControl : MonoBehaviour {
 
     public void Down()
     {
-        if (state == State.JumpDown)
+        if (state == State.JumpDown || (state == State.JumpUp && timeline > 0.3f))
         {
             currentG = g + downG;
             currentHSpeed = horizontalSpeed + extraHSpeed;
