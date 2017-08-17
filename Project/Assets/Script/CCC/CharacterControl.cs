@@ -406,7 +406,7 @@ public class CharacterControl : MonoBehaviour {
 
     void OnHit()
     {
-        //getHurtSound.Play();
+        getHurtSound.Play();
     }
 
     public void Down()
