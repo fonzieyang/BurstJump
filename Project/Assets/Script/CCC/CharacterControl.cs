@@ -11,7 +11,9 @@ public class CharacterControl : MonoBehaviour {
 
     public Slider HPSlider;
     public Text scoreTxt;
-    public Text continueHitTxt;
+
+    public Image TenDigitImage;
+    public Image SingltDigitImage;
 
     // config
     public Animator anim;
@@ -32,6 +34,8 @@ public class CharacterControl : MonoBehaviour {
     public float attackBonusStayFactor = 0.5f;
     public float attackExposiveRadius = 10;
     public float attackExposiveStayTime = 2;
+
+    public float attackExposiveInterval = 0.1f;
 
     private int score;
     private int continueHit;
@@ -83,7 +87,7 @@ public class CharacterControl : MonoBehaviour {
     public void ModifyHp(int hpDelta)
     {
         hp += hpDelta;
-        //HPSlider.value = hp;
+        HPSlider.value = hp;
 
         if (hp <= 0)
         {
@@ -112,6 +116,7 @@ public class CharacterControl : MonoBehaviour {
     }
     
     float startSprintTime_;
+    float sprintAttackNum;
     float lastSprintUpdateTime_;
     float sprintTime_ = 0.8f;
     Vector3 sprintDir_;
@@ -221,9 +226,19 @@ public class CharacterControl : MonoBehaviour {
                     {
                         transform.position = dist;
                         lastSprintUpdateTime_ = Time.time;
+
+                        float curOffset = lastSprintUpdateTime_ - startSprintTime_;
+                        int num = (int)(curOffset / attackExposiveInterval);
+                        if (num > sprintAttackNum)
+                        {
+                            sprintAttackNum = num;
+                            DoHit();
+                        }
+
                         if (lastSprintUpdateTime_ > startSprintTime_ + sprintTime_)
                         {
                             state = State.Stay;
+                            sprintAttackNum = 0;
                         }
                     }
                 }
@@ -333,10 +348,20 @@ public class CharacterControl : MonoBehaviour {
                 break;
         }
 
-        //scoreTxt.text = score.ToString();
+        scoreTxt.text = score.ToString();
 
         continueHit += num;
-        //continueHitTxt.text = continueHit.ToString();
+
+        continueHit = 78;
+        int hundredDigit = continueHit / 100;
+        int tenDigit = (continueHit % 100) / 10;
+        int singleDigit = (continueHit % 100) % 10;
+
+
+        //TenDigitImage.sprite = Resources.Load("Resources/Image/Number" + tenDigit.ToString(), typeof(Sprite)) as Sprite;
+        //SingltDigitImage.sprite = Resources.Load("Resources/Image/Number" + singleDigit.ToString(), typeof(Sprite)) as Sprite;
+
+
 
         return num != 0;
     }
