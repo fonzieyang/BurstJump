@@ -10,10 +10,12 @@ public class CharacterControl : MonoBehaviour {
     static public CharacterControl instance;
 
     public Slider HPSlider;
-    public Text scoreTxt;
+    //public Text scoreTxt;
 
+    public Image HundredDigitImage;
     public Image TenDigitImage;
     public Image SingltDigitImage;
+    public Image ComboImg;
 
     // config
     public Animator anim;
@@ -115,6 +117,8 @@ public class CharacterControl : MonoBehaviour {
         currentG = g;
         currentHSpeed = horizontalSpeed;
 
+        ComboImg.gameObject.SetActive(false);
+        HundredDigitImage.gameObject.SetActive(false);
         TenDigitImage.gameObject.SetActive(false);
         SingltDigitImage.gameObject.SetActive(false);
     }
@@ -331,63 +335,63 @@ public class CharacterControl : MonoBehaviour {
 
         int num = EnemyCreator.instance_.CheckAttack(atk);
 
-        switch (num)
+        if (num == 0)
         {
-            case 0:
-                //score += 0;
-                continueHit = 0;
-                break;
-
-            case 1:
-                score += 10;
-
-                break;
-
-            case 2:
-                score += 30;
-                break;
-
-            case 3:
-                score += 50;
-                break;
-
-            case 4:
-                score += 70;
-                break;
-
-            default:
-                score += num * 2;
-                break;
-        }
-
-        scoreTxt.text = score.ToString();
-
-        continueHit += num;
-
-        int hundredDigit = continueHit / 100;
-        int tenDigit = (continueHit % 100) / 10;
-        int singleDigit = (continueHit % 100) % 10;
-        
-        if (tenDigit != 0)
-        {
-            TenDigitImage.gameObject.SetActive(true);
-            SingltDigitImage.gameObject.SetActive(true);
-            TenDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + tenDigit.ToString());
-            SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
+            //continueHit = 0;
+            ComboImg.gameObject.SetActive(false);
         }
         else
         {
-            TenDigitImage.gameObject.SetActive(false);
-            if (singleDigit != 0)
+            ComboImg.gameObject.SetActive(true);
+        }
+
+        score += num;
+        //scoreTxt.text = score.ToString();
+
+        //continueHit += num;
+
+        int hundredDigit = score / 100;
+        int tenDigit = (score % 100) / 10;
+        int singleDigit = (score % 100) % 10;
+        
+        if (hundredDigit != 0)
+        {
+            HundredDigitImage.gameObject.SetActive(true);
+            TenDigitImage.gameObject.SetActive(true);
+            SingltDigitImage.gameObject.SetActive(true);
+
+            HundredDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + hundredDigit.ToString());
+            TenDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + tenDigit.ToString());
+            SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
+            
+        }
+        else
+        {
+            HundredDigitImage.gameObject.SetActive(false);
+
+            if (tenDigit != 0)
             {
+                TenDigitImage.gameObject.SetActive(true);
                 SingltDigitImage.gameObject.SetActive(true);
+                TenDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + tenDigit.ToString());
                 SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
             }
             else
             {
-                SingltDigitImage.gameObject.SetActive(false);
+                TenDigitImage.gameObject.SetActive(false);
+                if (singleDigit != 0)
+                {
+                    SingltDigitImage.gameObject.SetActive(true);
+                    SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
+                }
+                else
+                {
+                    SingltDigitImage.gameObject.SetActive(false);
+                }
             }
         }
+
+       
         
         return num != 0;
     }
