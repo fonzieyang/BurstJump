@@ -78,6 +78,7 @@
     <Compile Include="Assets\Script\CCC\CameraController.cs" />
     <Compile Include="Assets\Script\CCC\CharacterControl.cs" />
     <Compile Include="Assets\Script\CCC\InputController.cs" />
+    <Compile Include="Assets\Script\Enemy\Bullet.cs" />
     <Compile Include="Assets\Script\Enemy\Ememy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCreator.cs" />
     <Compile Include="Assets\Script\Enemy\WeakEnemy.cs" />

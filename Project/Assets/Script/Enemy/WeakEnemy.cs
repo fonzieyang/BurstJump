@@ -10,9 +10,14 @@ public class WeakEnemy : Enemy
     float lastPositionUpdateTime_;
     bool isFleeting_ = false;
     float fleetLen_ = 2;
+    float attackRange_ = 5;
+    float attackCdTime_ = 3;
+    float lastAttackTime_ = 0;
+    uint hp_;
 
     // Use this for initialization
     void Start () {
+        EnemyCreator.instance_.RegisetEnemy(gameObject);
         var p = transform.position;
         p.x = Random.Range(EnemyCreator.MAP_LOW, EnemyCreator.MAP_HIGH);
         p.z = Random.Range(EnemyCreator.MAP_LEFT, EnemyCreator.MAP_RIGHT);
@@ -51,9 +56,16 @@ public class WeakEnemy : Enemy
         transform.position = pos;
         lastPositionUpdateTime_ = Time.time;
         var characterPos = CharacterControl.instance.transform.position;
-        if (!isFleeting_ && (characterPos - transform.position).magnitude < fleetLen_)
+        if (!isFleeting_)
         {
-            BeginFleet(characterPos);
+            var dis = (characterPos - transform.position).magnitude;
+            if (dis < fleetLen_)
+            {
+                BeginFleet(characterPos);
+            } else if (dis < attackRange_ && lastAttackTime_ + attackCdTime_ < Time.time)
+            {
+                lastAttackTime_ = Time.time;
+            }
         }
         if (isFleeting_ && (characterPos - transform.position).magnitude > fleetLen_)
         {
