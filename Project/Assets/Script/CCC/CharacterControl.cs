@@ -73,6 +73,7 @@ public class CharacterControl : MonoBehaviour {
     public AudioSource jumpDownSound;
     public AudioSource getHurtSound;
     public AudioSource getItemSound;
+    public AudioSource jumpGroundSound;
 
     // effect
     public GameObject explosiveEffect;
@@ -311,11 +312,19 @@ public class CharacterControl : MonoBehaviour {
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
-        jumpDownSound.Play();
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
-        BreakMgr.instance.CheckObj(trans.position, hitRadius);
+        bool breakSth = BreakMgr.instance.CheckObj(trans.position, hitRadius);
+
+        if (breakSth)
+        {
+            jumpDownSound.Play();
+        }
+        else
+        {
+            jumpGroundSound.Play();
+        }
 
         int num = EnemyCreator.instance_.CheckAttack(atk);
 

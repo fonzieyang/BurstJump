@@ -19,12 +19,15 @@ public class BreakMgr : MonoBehaviour {
         objList.Add(obj);
     }
 
-    public void CheckObj(Vector3 pos, float radius)
+    public bool CheckObj(Vector3 pos, float radius)
     {
+        bool hit = false;
+
         for (int i=0; i<objList.Count; ++i)
         {            
             if (objList[i] !=null && (objList[i].GetPos() - pos).magnitude < radius)
             {
+                hit = true;
                 if (objList[i].OnHit())
                     removeList.Add(objList[i]);
             }
@@ -35,5 +38,7 @@ public class BreakMgr : MonoBehaviour {
             objList.Remove(removeList[i]);
         }
         removeList.Clear();
+
+        return hit;
     }
 }
