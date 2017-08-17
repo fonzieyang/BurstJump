@@ -114,6 +114,9 @@ public class CharacterControl : MonoBehaviour {
         instance = this;
         currentG = g;
         currentHSpeed = horizontalSpeed;
+
+        TenDigitImage.gameObject.SetActive(false);
+        SingltDigitImage.gameObject.SetActive(false);
     }
     
     float startSprintTime_;
@@ -361,17 +364,31 @@ public class CharacterControl : MonoBehaviour {
 
         continueHit += num;
 
-        continueHit = 78;
         int hundredDigit = continueHit / 100;
         int tenDigit = (continueHit % 100) / 10;
         int singleDigit = (continueHit % 100) % 10;
-
-
-        //TenDigitImage.sprite = Resources.Load("Resources/Image/Number" + tenDigit.ToString(), typeof(Sprite)) as Sprite;
-        //SingltDigitImage.sprite = Resources.Load("Resources/Image/Number" + singleDigit.ToString(), typeof(Sprite)) as Sprite;
-
-
-
+        
+        if (tenDigit != 0)
+        {
+            TenDigitImage.gameObject.SetActive(true);
+            SingltDigitImage.gameObject.SetActive(true);
+            TenDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + tenDigit.ToString());
+            SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
+        }
+        else
+        {
+            TenDigitImage.gameObject.SetActive(false);
+            if (singleDigit != 0)
+            {
+                SingltDigitImage.gameObject.SetActive(true);
+                SingltDigitImage.sprite = Resources.Load<Sprite>("Image/Number" + singleDigit.ToString());
+            }
+            else
+            {
+                SingltDigitImage.gameObject.SetActive(false);
+            }
+        }
+        
         return num != 0;
     }
 
