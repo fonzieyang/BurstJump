@@ -17,8 +17,6 @@ public class WeakEnemy : Enemy
     float lastAttackTime_ = 0;
     bool isAttacking_ = false;
     float attackStartTime_ = 0;
-    uint hp_;
-
 
     // Use this for initialization
     void Start () {
@@ -29,9 +27,6 @@ public class WeakEnemy : Enemy
         transform.position = p;
         lastPositionUpdateTime_ = Time.time;
         anim.SetFloat("Forward", 1);
-        AnimationClip clip;
-
-
     }
 
     void UpdateDirection()
