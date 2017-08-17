@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -99,6 +100,11 @@ public class CharacterControl : MonoBehaviour {
         instance = this;
         currentG = g;
         currentHSpeed = horizontalSpeed;
+    }
+
+    internal void Sprint()
+    {
+        throw new NotImplementedException();
     }
 
     public void Move(Vector3 m)
