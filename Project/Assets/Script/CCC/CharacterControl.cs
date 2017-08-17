@@ -17,6 +17,7 @@ public class CharacterControl : MonoBehaviour {
     public float g = 9.8f;
     public float hitRadius = 3;
     public float attack = 1;
+    public float downG = 20;
 
     public enum State
     {
@@ -34,12 +35,14 @@ public class CharacterControl : MonoBehaviour {
     float vSpeed;
     [System.NonSerialized]
     public Transform trans;
+    float currentG;
 
     void Awake()
     {
         hp = hpMax;
         trans = transform;
         instance = this;
+        currentG = g;
     }
 
     public void Move(Vector3 m)
@@ -58,7 +61,7 @@ public class CharacterControl : MonoBehaviour {
         {
             case State.JumpUp:
                 {
-                    vSpeed = vSpeed - g * 0.5f * deltaTime;
+                    vSpeed = vSpeed - currentG * 0.5f * deltaTime;
                     var vDelta = vSpeed * deltaTime;                       
                     var hDelta = horizontalSpeed * deltaTime * move.normalized;
 
@@ -75,7 +78,7 @@ public class CharacterControl : MonoBehaviour {
                 break;
             case State.JumpDown:
                 {
-                    vSpeed = vSpeed - g * 0.5f * deltaTime;
+                    vSpeed = vSpeed - currentG * 0.5f * deltaTime;
                     var vDelta = vSpeed * deltaTime;
                     var hDelta = horizontalSpeed * deltaTime * move.normalized;
                     hDelta.y = vDelta;
@@ -119,8 +122,9 @@ public class CharacterControl : MonoBehaviour {
 
         if (s == State.JumpUp)
         {
-            vSpeed = Mathf.Sqrt(2*jumpHeight*g);
+            vSpeed = Mathf.Sqrt(2*jumpHeight*currentG);
         }
+        currentG = g;
     }
 
     void UpdatePos(Vector3 delta)
@@ -135,5 +139,13 @@ public class CharacterControl : MonoBehaviour {
     void DoHit()
     {
         
+    }
+
+    public void Down()
+    {
+        if (state == State.JumpDown)
+        {
+            currentG = g + downG;
+        }
     }
 }
