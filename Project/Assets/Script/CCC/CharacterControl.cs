@@ -11,7 +11,9 @@ public class CharacterControl : MonoBehaviour {
 
     public Slider HPSlider;
     public Text scoreTxt;
-    public Text continueHitTxt;
+
+    public Image TenDigitImage;
+    public Image SingltDigitImage;
 
     // config
     public Animator anim;
@@ -333,10 +335,20 @@ public class CharacterControl : MonoBehaviour {
                 break;
         }
 
-        //scoreTxt.text = score.ToString();
+        scoreTxt.text = score.ToString();
 
         continueHit += num;
-        //continueHitTxt.text = continueHit.ToString();
+
+        continueHit = 78;
+        int hundredDigit = continueHit / 100;
+        int tenDigit = (continueHit % 100) / 10;
+        int singleDigit = (continueHit % 100) % 10;
+
+
+        TenDigitImage.sprite = Resources.Load("Resources/Image/Number" + tenDigit.ToString(), typeof(Sprite)) as Sprite;
+        SingltDigitImage.sprite = Resources.Load("Resources/Image/Number" + singleDigit.ToString(), typeof(Sprite)) as Sprite;
+
+
 
         return num != 0;
     }
