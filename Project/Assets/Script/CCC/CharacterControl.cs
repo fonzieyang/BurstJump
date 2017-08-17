@@ -35,6 +35,8 @@ public class CharacterControl : MonoBehaviour {
     public float attackExposiveRadius = 10;
     public float attackExposiveStayTime = 2;
 
+    public float attackExposiveInterval = 0.1f;
+
     private int score;
     private int continueHit;
 
@@ -114,6 +116,7 @@ public class CharacterControl : MonoBehaviour {
     }
     
     float startSprintTime_;
+    float sprintAttackNum;
     float lastSprintUpdateTime_;
     float sprintTime_ = 0.8f;
     Vector3 sprintDir_;
@@ -223,9 +226,19 @@ public class CharacterControl : MonoBehaviour {
                     {
                         transform.position = dist;
                         lastSprintUpdateTime_ = Time.time;
+
+                        float curOffset = lastSprintUpdateTime_ - startSprintTime_;
+                        int num = (int)(curOffset / attackExposiveInterval);
+                        if (num > sprintAttackNum)
+                        {
+                            sprintAttackNum = num;
+                            DoHit();
+                        }
+
                         if (lastSprintUpdateTime_ > startSprintTime_ + sprintTime_)
                         {
                             state = State.Stay;
+                            sprintAttackNum = 0;
                         }
                     }
                 }
