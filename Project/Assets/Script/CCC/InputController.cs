@@ -79,5 +79,12 @@ public class InputController : MonoBehaviour {
         {
             character.Down();
         }
-	}
+
+        bool isSprint = Input.GetButtonDown("Fire2");
+        if (isSprint)
+        {
+            character.Sprint();
+        }
+
+    }
 }
