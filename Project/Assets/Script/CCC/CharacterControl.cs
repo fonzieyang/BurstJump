@@ -40,7 +40,6 @@ public class CharacterControl : MonoBehaviour {
     public float attackExposiveInterval = 0.1f;
 
     private int score;
-    private int continueHit;
 
 
     public enum State
@@ -337,7 +336,6 @@ public class CharacterControl : MonoBehaviour {
 
         if (num == 0)
         {
-            //continueHit = 0;
             ComboImg.gameObject.SetActive(false);
         }
         else
@@ -346,9 +344,6 @@ public class CharacterControl : MonoBehaviour {
         }
 
         score += num;
-        //scoreTxt.text = score.ToString();
-
-        //continueHit += num;
 
         int hundredDigit = score / 100;
         int tenDigit = (score % 100) / 10;
