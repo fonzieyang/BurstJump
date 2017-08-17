@@ -58,6 +58,9 @@ public class CharacterControl : MonoBehaviour {
     public AudioSource getHurtSound;
     public AudioSource getItemSound;
 
+    // effect
+    public GameObject explosiveEffect;
+
 
     float GetCurG()
     {
@@ -223,6 +226,8 @@ public class CharacterControl : MonoBehaviour {
         atk.impactWaveRadius = hitRadius;
 
         jumpDownSound.Play();
+        explosiveEffect.SetActive(false);
+        explosiveEffect.SetActive(true);
 
         return EnemyCreator.instance_.CheckAttack(atk);
     }
