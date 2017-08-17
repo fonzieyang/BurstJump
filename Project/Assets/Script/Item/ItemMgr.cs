@@ -22,7 +22,7 @@ public class ItemMgr : MonoBehaviour {
     public void RemoveItem(ItemBase item)
     {
         itemList.Remove(item);
-        GameObject.Destroy(item.gameObject);
+        GameObject.Destroy(item.gameObject, 3);
     }       
 
     public void CheckPick(Vector3 pos)

@@ -1,0 +1,100 @@
+fileFormatVersion: 2
+guid: 010fb35a9b9abbc498e7af2d875db2c3
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    4300000: frames
+    4300002: D5006gre
+    4300004: D5006gla
+    4300006: D5006br3
+    4300008: D5006bri
+    4300010: door
+    4300012: D5006tab
+    4300014: door1
+    4300016: door2
+    4300018: Bottom
+    4300020: Roof
+    4300022: Chimney
+    4300024: Door
+    4300026: FrontWindow
+    4300028: SideWindow
+    4300030: 'FrontWindow '
+    4300032: 'FrontWindow '
+    4300034: 'FrontWindow '
+    4300036: 'SideWindow '
+    4300038: 'SideWindow '
+    4300040: 'SideWindow '
+    4300042: 'SideWindow '
+    4300044: 'SideWindow '
+    4300046: 'SideWindow '
+    4300048: 'SideWindow '
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
