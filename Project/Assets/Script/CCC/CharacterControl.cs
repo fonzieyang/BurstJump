@@ -18,6 +18,14 @@ public class CharacterControl : MonoBehaviour {
     public float downG = 20;
     public float extraHSpeed = 2;
 
+    public float attackAccCount = 5;
+    public float attackBonusHSpeedFactor = 2;
+    public float attackBonusHeightFactor = 0.5f;
+    public float attackBonusGFactor = 30;
+    public float attackBonusStayFactor = 0.5f;
+    public float attackExposiveRadius = 10;
+    public float attackExposiveStayTime = 2;
+
     public enum State
     {
         JumpUp,
@@ -38,6 +46,14 @@ public class CharacterControl : MonoBehaviour {
     float currentG;
     [SerializeField]
     float currentHSpeed;
+    [SerializeField]
+    int attackAcc;
+
+    float GetCurG()
+    {
+        return currentG + attackAcc * attackBonusGFactor;
+    }
+
 
     void Awake()
     {
@@ -64,30 +80,35 @@ public class CharacterControl : MonoBehaviour {
         {
             case State.JumpUp:
                 {
-                    vSpeed = vSpeed - currentG * 0.5f * deltaTime;
-                    var vDelta = vSpeed * deltaTime;                       
-                    var hDelta = currentHSpeed * deltaTime * move.normalized;
-
-                    if (vDelta < 0)
+                    UpdateInAir(deltaTime);
+                    if (vSpeed <= 0)
                     {
-                        vDelta = 0;
-                        SetState(State.JumpDown);
-                    } 
-
-                    hDelta.y = vDelta;
-                    UpdatePos(hDelta);
+                        SetState(State.JumpDown);    
+                    }
                 }
                 break;
             case State.JumpDown:
                 {
-                    vSpeed = vSpeed - currentG * 0.5f * deltaTime;
-                    var vDelta = vSpeed * deltaTime;
-                    var hDelta = currentHSpeed * deltaTime * move.normalized;
-                    hDelta.y = vDelta;
-                    UpdatePos(hDelta);
+                    UpdateInAir(deltaTime);
                     if (trans.position.y <= 0)
                     {
-                        DoHit();
+                        bool hit = DoHit();
+
+                        if (hit)
+                        {
+                            ++attackAcc;
+                        }
+                        else
+                        {
+                            attackAcc = 0;
+                        }
+
+                        if (attackAcc > attackAccCount)
+                        {
+                            attackAcc = 0;
+                            DoExplosive();
+                        }
+
                         SetState(State.Stay);
                         ItemMgr.instance.CheckPick(trans.position);
                     }
@@ -95,7 +116,7 @@ public class CharacterControl : MonoBehaviour {
                 break;
             case State.Stay:
                 {
-                    float stayTime = realHeight * tf;
+                    float stayTime = realHeight * tf + attackAcc * attackBonusStayFactor;
                     if (timeline < stayTime)
                         break;
                     if (move != Vector3.zero)
@@ -130,7 +151,7 @@ public class CharacterControl : MonoBehaviour {
 
         if (s == State.JumpUp)
         {
-            vSpeed = Mathf.Sqrt(2*jumpHeight*currentG);
+            vSpeed = Mathf.Sqrt(2*(jumpHeight + attackAcc*attackBonusHeightFactor)*GetCurG());
         }
         currentG = g;
 
@@ -145,14 +166,28 @@ public class CharacterControl : MonoBehaviour {
         trans.position = newpos;
     }
 
-    void DoHit()
+    void UpdateInAir(float deltaTime)
+    {
+        vSpeed = vSpeed - GetCurG() * 0.5f * deltaTime;
+        var vDelta = vSpeed * deltaTime;
+        var hDelta = (currentHSpeed + attackAcc * attackBonusHSpeedFactor) * deltaTime * move.normalized;
+        hDelta.y = vDelta;
+        UpdatePos(hDelta);
+    }
+
+    bool DoHit()
     {
         AttackInfo atk = new AttackInfo();
         atk.attackType = AttackType.normal;
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
-        EnemyCreator.instance_.CheckAttack(atk);
+        return EnemyCreator.instance_.CheckAttack(atk);
+    }
+
+    void DoExplosive()
+    {
+        
     }
 
     public void Down()
