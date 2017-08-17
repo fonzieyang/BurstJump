@@ -123,6 +123,9 @@ public class DefEnemy : Enemy
             if (dis.magnitude< ai.impactWaveRadius) {
                 result = true;
                 EnemyCreator.instance_.EnemyKilled(gameObject);
+            }
+            if (dis.magnitude < CharacterControl.CHAR_RADIUS)
+            {
                 CharacterControl.instance.ModifyHp(-1);
             }
         }

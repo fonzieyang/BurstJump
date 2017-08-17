@@ -76,6 +76,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DragonBoar\Scripts\playerControlDB.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_AddForceForward.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_Camera.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_HitSpawner.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_LifeTime.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_Mover.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_MoverRandom.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_ParticlePreview.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_Position.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_RandomRotation.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_RandomScale.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_Rotation.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_ShakeCamera.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\FX_Spawner.cs" />
+    <Compile Include="Assets\Magical\Sources\Scripts\Wizard.cs" />
     <Compile Include="Assets\Mesh Explosion\Demo\ClickOrTapToExplode.cs" />
     <Compile Include="Assets\Mesh Explosion\Demo\ReloadScene.cs" />
     <Compile Include="Assets\Mesh Explosion\Internal\DestroyAfterTime.cs" />
@@ -145,7 +159,9 @@
     <Compile Include="Assets\Script\Scene\BreakObj.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Magical\Sources\Shader\Rimlight.shader" />
     <None Include="Assets\Mesh Explosion\Read Me.txt" />
+    <None Include="Assets\Mirza Beig\README - Advanced Particle Scaler.txt" />
     <None Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Skybox\README_SKYBOX.txt" />
     <None Include="Assets\ResourcePack\Beautify\README.txt" />
     <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\Beautify.cginc" />

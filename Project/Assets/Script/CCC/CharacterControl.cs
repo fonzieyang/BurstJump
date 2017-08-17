@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour {
 
-    const float CHAR_RADIUS = 1.5f;
+    public const float CHAR_RADIUS = 1.5f;
     static public CharacterControl instance;
 
     public Slider HPSlider;
@@ -83,7 +83,7 @@ public class CharacterControl : MonoBehaviour {
     public void ModifyHp(int hpDelta)
     {
         hp += hpDelta;
-        HPSlider.value = hp;
+        //HPSlider.value = hp;
 
         if (hp <= 0)
         {
@@ -333,10 +333,10 @@ public class CharacterControl : MonoBehaviour {
                 break;
         }
 
-        scoreTxt.text = score.ToString();
+        //scoreTxt.text = score.ToString();
 
         continueHit += num;
-        continueHitTxt.text = continueHit.ToString();
+        //continueHitTxt.text = continueHit.ToString();
 
         return num != 0;
     }
