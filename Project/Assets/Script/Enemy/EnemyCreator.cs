@@ -50,7 +50,7 @@ public class EnemyCreator : MonoBehaviour {
         var pos = enemy.transform.position;
         pos.x = Random.Range(MAP_HIGH, MAP_LOW);
         pos.z = Random.Range(MAP_LEFT, MAP_RIGHT);
-        transform.position = pos;
+        enemy.transform.position = pos;
         Enemy e = enemy.GetComponent<Enemy>();
         if (e != null)
         {

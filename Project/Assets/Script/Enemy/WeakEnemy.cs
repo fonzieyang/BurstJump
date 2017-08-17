@@ -89,7 +89,9 @@ public class WeakEnemy : Enemy
     {
         if (ai.attackType == AttackType.normal)
         {
-            if ((ai.position - transform.position).magnitude< 0.5f) {
+            var dis = ai.position - transform.position;
+            dis.y = 0;
+            if (dis.magnitude< ai.impactWaveRadius) {
                 EnemyCreator.instance_.EnemyKilled(gameObject);
             }
         }
