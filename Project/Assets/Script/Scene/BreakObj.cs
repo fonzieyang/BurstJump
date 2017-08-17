@@ -6,6 +6,8 @@ public class BreakObj : MonoBehaviour {
 
     //public ExploderObject obj;
     public MeshExploder obj;
+    public Transform proxyPos;
+    public bool closeRenderer = true;
 
     void Start()
     {
@@ -20,5 +22,31 @@ public class BreakObj : MonoBehaviour {
         }
 
         BreakMgr.instance.AddObj(this);
+    }
+
+    public bool OnHit()
+    {
+        obj.Explode();
+
+        if (closeRenderer)
+        {
+            var render = GetComponent<Renderer>();
+            if (render != null)
+                render.enabled = false;             
+        }  
+
+        return closeRenderer;
+    }
+
+    public Vector3 GetPos()
+    {
+        if (proxyPos != null)
+        {
+            return proxyPos.position;
+        }
+        else
+        {
+            return transform.position;
+        }
     }
 }
