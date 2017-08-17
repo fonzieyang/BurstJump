@@ -16,6 +16,7 @@ public class CharacterControl : MonoBehaviour {
     public Image TenDigitImage;
     public Image SingltDigitImage;
     public Image ComboImg;
+    public Image ComboNumImg;
 
     // config
     public Animator anim;
@@ -40,6 +41,7 @@ public class CharacterControl : MonoBehaviour {
     public float attackExposiveInterval = 0.1f;
 
     private int score;
+    private int continueHit;
 
 
     public enum State
@@ -116,6 +118,7 @@ public class CharacterControl : MonoBehaviour {
         currentG = g;
         currentHSpeed = horizontalSpeed;
 
+        ComboNumImg.gameObject.SetActive(false);
         ComboImg.gameObject.SetActive(false);
         HundredDigitImage.gameObject.SetActive(false);
         TenDigitImage.gameObject.SetActive(false);
@@ -336,14 +339,26 @@ public class CharacterControl : MonoBehaviour {
 
         if (num == 0)
         {
+            continueHit = 0;
             ComboImg.gameObject.SetActive(false);
+            ComboNumImg.gameObject.SetActive(false);
         }
         else
         {
+            continueHit += num;
+            if (continueHit > 9)
+            {
+                continueHit = 0;
+            }
+           
             ComboImg.gameObject.SetActive(true);
+            ComboNumImg.gameObject.SetActive(true);
+
+            ComboNumImg.sprite = Resources.Load<Sprite>("Image/Number" + continueHit.ToString());
         }
 
         score += num;
+        //scoreTxt.text = score.ToString();
 
         int hundredDigit = score / 100;
         int tenDigit = (score % 100) / 10;
