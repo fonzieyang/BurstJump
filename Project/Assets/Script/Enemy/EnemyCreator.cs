@@ -11,15 +11,15 @@ public enum EnemyType
 }
 
 public class EnemyCreator : MonoBehaviour {
-    public const int MAP_LOW = -50;
-    public const int MAP_HIGH = 50;
-    public const int MAP_LEFT = -50;
-    public const int MAP_RIGHT = 50;
+    public const int MAP_LOW = -20;
+    public const int MAP_HIGH = 20;
+    public const int MAP_LEFT = -20;
+    public const int MAP_RIGHT = 20;
 
-    public GameObject weakEnemyProto_;
-    public GameObject attackEnemyProto_;
-    public GameObject defEnenmyProto_;
-    public GameObject bossProto_;
+    public Object weakEnemyProto_;
+    public Object attackEnemyProto_;
+    public Object defEnenmyProto_;
+    public Object bossProto_;
     public List<GameObject> enemyList_ = new List<GameObject>();
 
     static public EnemyCreator instance_;
@@ -31,9 +31,9 @@ public class EnemyCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 30; i++)
         {
-            var e = Instantiate(weakEnemyProto_, transform);
+            var e = GameObject.Instantiate(weakEnemyProto_, transform) as GameObject;
             var pos = e.transform.position;
             pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
             pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);

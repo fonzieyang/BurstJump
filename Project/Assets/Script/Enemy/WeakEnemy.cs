@@ -48,6 +48,7 @@ public class WeakEnemy : Enemy
         var t = Time.time - lastPositionUpdateTime_;
         var pos = transform.position;
         pos += movingDircetion_* t;
+        #if false
         while (pos.x < EnemyCreator.MAP_LOW + 0.1f || pos.x > EnemyCreator.MAP_HIGH - 0.1f || pos.z < EnemyCreator.MAP_LEFT+0.1f || pos.z > EnemyCreator.MAP_RIGHT + 0.1f)
         {
             UpdateDirection();
@@ -55,6 +56,7 @@ public class WeakEnemy : Enemy
             pos = transform.position;
             pos += movingDircetion_ * t;
         }
+        #endif
         transform.position = pos;
         lastPositionUpdateTime_ = Time.time;
         var characterPos = CharacterControl.instance.transform.position;
