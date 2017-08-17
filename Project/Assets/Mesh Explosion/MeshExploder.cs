@@ -17,7 +17,7 @@ public class MeshExploder : MonoBehaviour {
 	
 	public ExplosionType type = ExplosionType.Visual;
 	public float minSpeed = 1;
-	public float maxSpeed = 5;
+	public float maxSpeed = 20;
 	public float minRotationSpeed = 90;
 	public float maxRotationSpeed = 360;
 	public float fadeWaitTime = 0.5f;
