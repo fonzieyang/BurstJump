@@ -229,7 +229,7 @@ public class CharacterControl : MonoBehaviour {
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
-        return EnemyCreator.instance_.CheckAttack(atk);
+        return EnemyCreator.instance_.CheckAttack(atk) != 0;
     }
 
     void DoExplosive()
