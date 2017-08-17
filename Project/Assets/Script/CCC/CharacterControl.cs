@@ -10,6 +10,8 @@ public class CharacterControl : MonoBehaviour {
     static public CharacterControl instance;
 
     public Slider HPSlider;
+    public Text scoreTxt;
+    public Text continueHitTxt;
 
     // config
     public Animator anim;
@@ -30,6 +32,10 @@ public class CharacterControl : MonoBehaviour {
     public float attackBonusStayFactor = 0.5f;
     public float attackExposiveRadius = 10;
     public float attackExposiveStayTime = 2;
+
+    private int score;
+    private int continueHit;
+
 
     public enum State
     {
@@ -244,7 +250,43 @@ public class CharacterControl : MonoBehaviour {
 
         BreakMgr.instance.CheckObj(trans.position, hitRadius);
 
-        return EnemyCreator.instance_.CheckAttack(atk) != 0;
+        int num = EnemyCreator.instance_.CheckAttack(atk);
+
+        switch (num)
+        {
+            case 0:
+                //score += 0;
+                continueHit = 0;
+                break;
+
+            case 1:
+                score += 10;
+
+                break;
+
+            case 2:
+                score += 30;
+                break;
+
+            case 3:
+                score += 50;
+                break;
+
+            case 4:
+                score += 70;
+                break;
+
+            default:
+                score += num * 2;
+                break;
+        }
+
+        scoreTxt.text = score.ToString();
+
+        continueHit += num;
+        continueHitTxt.text = continueHit.ToString();
+
+        return num != 0;
     }
 
     void DoExplosive()
