@@ -192,7 +192,7 @@ public class CharacterControl : MonoBehaviour {
                 
                 break;
             case State.JumpUp:
-                //jumpSound.Play();
+                jumpSound.Play();
                 break;
         }
 
