@@ -6,11 +6,9 @@ public class CharacterControl : MonoBehaviour {
 
     static public CharacterControl instance;
 
+    // config
     public Animator anim;
-
     public int hpMax = 10;
-
-
     public float jumpHeight = 5;
     public float tf = 1;
     public float horizontalSpeed = 3;
@@ -74,7 +72,6 @@ public class CharacterControl : MonoBehaviour {
                     {
                         vDelta = 0;
                         SetState(State.JumpDown);
-                        DoHit();
                     } 
 
                     hDelta.y = vDelta;
@@ -90,6 +87,7 @@ public class CharacterControl : MonoBehaviour {
                     UpdatePos(hDelta);
                     if (trans.position.y <= 0)
                     {
+                        DoHit();
                         SetState(State.Stay);
                         ItemMgr.instance.CheckPick(trans.position);
                     }
