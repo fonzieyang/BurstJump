@@ -51,6 +51,14 @@ public class CharacterControl : MonoBehaviour {
     [SerializeField]
     int attackAcc;
 
+
+    // sound
+    public AudioSource jumpSound;
+    public AudioSource jumpDownSound;
+    public AudioSource getHurtSound;
+    public AudioSource getItemSound;
+
+
     float GetCurG()
     {
         return currentG + attackAcc * attackBonusGFactor;
@@ -67,6 +75,11 @@ public class CharacterControl : MonoBehaviour {
         if (hp > hpMax)
         {
             hp = hpMax;
+        }
+
+        if (hpDelta < 0)
+        {
+            OnHit();
         }
     }
 
@@ -169,6 +182,17 @@ public class CharacterControl : MonoBehaviour {
         {
             vSpeed = Mathf.Sqrt(2*(jumpHeight + attackAcc*attackBonusHeightFactor)*GetCurG());
         }
+
+        switch(s)
+        {
+            case State.JumpDown:
+                
+                break;
+            case State.JumpUp:
+                //jumpSound.Play();
+                break;
+        }
+
         currentG = g;
 
     }
@@ -198,6 +222,8 @@ public class CharacterControl : MonoBehaviour {
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
+        jumpDownSound.Play();
+
         return EnemyCreator.instance_.CheckAttack(atk);
     }
 
@@ -209,6 +235,11 @@ public class CharacterControl : MonoBehaviour {
     void Die()
     {
         
+    }
+
+    void OnHit()
+    {
+        getHurtSound.Play();
     }
 
     public void Down()
