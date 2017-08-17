@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BreakObj : MonoBehaviour {
 
-    public ExploderObject obj;
+    //public ExploderObject obj;
 
     void Start()
     {
-        if (obj == null)
+        //if (obj == null)
         {
-            obj = gameObject.GetComponent<ExploderObject>();
-            if (obj == null)
-                obj = gameObject.AddComponent<ExploderObject>();
+      //      obj = gameObject.GetComponent<ExploderObject>();
+            //if (obj == null)
+              //  obj = gameObject.AddComponent<ExploderObject>();
 
             gameObject.isStatic = false;
         }

@@ -25,7 +25,7 @@ public class BreakMgr : MonoBehaviour {
         {            
             if ((objList[i].transform.position - pos).magnitude < radius)
             {
-                objList[i].obj.Explode();
+                //objList[i].obj.Explode();
                 removeList.Add(objList[i]);
             }
         }
