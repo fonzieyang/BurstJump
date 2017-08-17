@@ -23,7 +23,7 @@ public class BreakMgr : MonoBehaviour {
     {
         for (int i=0; i<objList.Count; ++i)
         {            
-            if ((objList[i].GetPos() - pos).magnitude < radius)
+            if (objList[i] !=null && (objList[i].GetPos() - pos).magnitude < radius)
             {
                 if (objList[i].OnHit())
                     removeList.Add(objList[i]);
