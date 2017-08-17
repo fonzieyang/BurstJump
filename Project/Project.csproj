@@ -76,6 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DragonBoar\Scripts\playerControlDB.cs" />
+    <Compile Include="Assets\Mesh Explosion\Demo\ClickOrTapToExplode.cs" />
+    <Compile Include="Assets\Mesh Explosion\Demo\ReloadScene.cs" />
+    <Compile Include="Assets\Mesh Explosion\Internal\DestroyAfterTime.cs" />
+    <Compile Include="Assets\Mesh Explosion\Internal\DestroyOnFadeCompletion.cs" />
+    <Compile Include="Assets\Mesh Explosion\Internal\Fade.cs" />
+    <Compile Include="Assets\Mesh Explosion\Internal\MeshExplosion.cs" />
+    <Compile Include="Assets\Mesh Explosion\MeshExploder.cs" />
     <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\CameraAnimator.cs" />
     <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\Demo1.cs" />
     <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\Demo2.cs" />
@@ -138,6 +145,7 @@
     <Compile Include="Assets\Script\Scene\BreakObj.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Mesh Explosion\Read Me.txt" />
     <None Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Skybox\README_SKYBOX.txt" />
     <None Include="Assets\ResourcePack\Beautify\README.txt" />
     <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\Beautify.cginc" />
