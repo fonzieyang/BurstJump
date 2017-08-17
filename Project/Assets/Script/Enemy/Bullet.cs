@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour {
         {
             // boom
             Destroy(gameObject);
+            CharacterControl.instance.ModifyHp(-1);
         }
     }
 }

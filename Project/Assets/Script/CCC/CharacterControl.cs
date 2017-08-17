@@ -225,9 +225,13 @@ public class CharacterControl : MonoBehaviour {
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
+<<<<<<< HEAD
+        //jumpDownSound.Play();
+=======
         jumpDownSound.Play();
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
+>>>>>>> 254caa40e549a4efb60a40832e877965413433f7
 
         return EnemyCreator.instance_.CheckAttack(atk);
     }
@@ -244,7 +248,7 @@ public class CharacterControl : MonoBehaviour {
 
     void OnHit()
     {
-        getHurtSound.Play();
+        //getHurtSound.Play();
     }
 
     public void Down()
