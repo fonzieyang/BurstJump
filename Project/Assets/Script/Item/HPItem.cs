@@ -8,6 +8,7 @@ public class HPItem : ItemBase {
 
     public override void OnPick()
     {
+        base.OnPick();
         CharacterControl.instance.ModifyHp(addHp);
     }
 }

@@ -229,6 +229,12 @@ public class CharacterControl : MonoBehaviour {
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
+        var exp = GameObject.FindObjectOfType<ExploderObject>();
+        if (exp != null)
+            exp.Explode();
+
+        BreakMgr.instance.CheckObj(trans.position, hitRadius);
+
         return EnemyCreator.instance_.CheckAttack(atk);
     }
 
