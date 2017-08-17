@@ -224,11 +224,7 @@ public class CharacterControl : MonoBehaviour {
         atk.attackType = AttackType.normal;
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> b2bfccee0ffb5c8b9072a693fcd7725229489248
         jumpDownSound.Play();
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
