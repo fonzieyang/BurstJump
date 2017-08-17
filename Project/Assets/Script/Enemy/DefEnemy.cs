@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeakEnemy : Enemy
+public class DefEnemy : Enemy
 {
     public GameObject bulletProto_;
     Vector3 movingDircetion_;
@@ -20,6 +20,7 @@ public class WeakEnemy : Enemy
 
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
         EnemyCreator.instance_.RegisetEnemy(gameObject);
         var p = transform.position;
         p.x = Random.Range(EnemyCreator.MAP_LOW, EnemyCreator.MAP_HIGH);
@@ -122,6 +123,7 @@ public class WeakEnemy : Enemy
             if (dis.magnitude< ai.impactWaveRadius) {
                 result = true;
                 EnemyCreator.instance_.EnemyKilled(gameObject);
+                CharacterControl.instance.ModifyHp(-1);
             }
         }
         return result;

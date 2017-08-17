@@ -75,6 +75,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\CameraAnimator.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\Demo1.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\Demo2.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\Demo4.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\FreeCameraMove.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Scripts\SphereAnimator.cs" />
+    <Compile Include="Assets\ResourcePack\Beautify\Scripts\Beautify.cs" />
     <Compile Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -117,7 +124,9 @@
     <Compile Include="Assets\Script\CCC\CharacterControl.cs" />
     <Compile Include="Assets\Script\CCC\InputController.cs" />
     <Compile Include="Assets\Script\Enemy\AnimationEvent.cs" />
+    <Compile Include="Assets\Script\Enemy\AttackEnemy.cs" />
     <Compile Include="Assets\Script\Enemy\Bullet.cs" />
+    <Compile Include="Assets\Script\Enemy\DefEnemy.cs" />
     <Compile Include="Assets\Script\Enemy\Ememy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCreator.cs" />
     <Compile Include="Assets\Script\Enemy\WeakEnemy.cs" />
@@ -126,6 +135,20 @@
     <Compile Include="Assets\Script\Item\ItemMgr.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ResourcePack\Beautify\Demos\DemoSources\Skybox\README_SKYBOX.txt" />
+    <None Include="Assets\ResourcePack\Beautify\README.txt" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\Beautify.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\Beautify.shader" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyBasic.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyBasic.shader" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyDoF.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyEA.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyLum.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyMobile.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifyMobile.shader" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\BeautifySF.cginc" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Shaders\CopyDepth.shader" />
+    <None Include="Assets\ResourcePack\Beautify\Resources\Textures\README Textures.txt" />
     <None Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
     <None Include="Assets\ResourcePack\L_FG_Assets_Pack_Lite\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />

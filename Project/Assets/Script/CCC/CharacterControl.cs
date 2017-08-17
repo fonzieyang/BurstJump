@@ -222,7 +222,7 @@ public class CharacterControl : MonoBehaviour {
         atk.position = trans.position;
         atk.impactWaveRadius = hitRadius;
 
-        jumpDownSound.Play();
+        //jumpDownSound.Play();
 
         return EnemyCreator.instance_.CheckAttack(atk);
     }
@@ -239,7 +239,7 @@ public class CharacterControl : MonoBehaviour {
 
     void OnHit()
     {
-        getHurtSound.Play();
+        //getHurtSound.Play();
     }
 
     public void Down()

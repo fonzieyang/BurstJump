@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeakEnemy : Enemy
+public class AttackEnemy : Enemy
 {
     public GameObject bulletProto_;
     Vector3 movingDircetion_;
@@ -20,6 +20,7 @@ public class WeakEnemy : Enemy
 
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
         EnemyCreator.instance_.RegisetEnemy(gameObject);
         var p = transform.position;
         p.x = Random.Range(EnemyCreator.MAP_LOW, EnemyCreator.MAP_HIGH);
@@ -92,6 +93,15 @@ public class WeakEnemy : Enemy
             if (dis < fleetLen_)
             {
                 BeginFleet(characterPos);
+            } else if (dis < attackRange_ && lastAttackTime_ + attackCdTime_ < Time.time)
+            {
+                lastAttackTime_ = Time.time;
+                var dir = characterPos - transform.position;
+                dir.y = 0;
+                transform.forward = dir;
+                anim.SetBool("Attack", true);
+                isAttacking_ = true;
+                attackStartTime_ = Time.time;
             }
         }
         if (isFleeting_ && (characterPos - transform.position).magnitude > fleetLen_)

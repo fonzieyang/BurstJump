@@ -32,9 +32,27 @@ public class EnemyCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < enemyNum_; i++)
+        for (int i = 0; i < enemyNum_ * 0.7; i++)
         {
             var e = GameObject.Instantiate(weakEnemyProto_, transform) as GameObject;
+            var pos = e.transform.position;
+            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            e.transform.position = pos;
+            e.SetActive(true);
+        }
+        for (int i = 0; i < enemyNum_ * 0.2; i++)
+        {
+            var e = GameObject.Instantiate(defEnenmyProto_, transform) as GameObject;
+            var pos = e.transform.position;
+            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            e.transform.position = pos;
+            e.SetActive(true);
+        }
+        for (int i = 0; i < enemyNum_ * 0.1; i++)
+        {
+            var e = GameObject.Instantiate(attackEnemyProto_, transform) as GameObject;
             var pos = e.transform.position;
             pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
             pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
