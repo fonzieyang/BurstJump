@@ -42,6 +42,14 @@ public class WeakEnemy : Enemy
 	
 	// Update is called once per frame
 	void Update () {
+        if (needDes_)
+        {
+            if (Time.time > startDesTime_ + 5)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
         if (isAttacking_ == true)
         {
 
@@ -127,10 +135,14 @@ public class WeakEnemy : Enemy
         return result;
     }
 
+    public bool needDes_ = false;
+    public float startDesTime_;
     public override void Recreate()
     {
         isFleeting_ = false;
         EnemyCreator.instance_.DeleteEnemy(gameObject);
+        needDes_ = true;
+        startDesTime_ = Time.time;
         return;
     }
 

@@ -106,10 +106,22 @@ public class EnemyCreator : MonoBehaviour {
         enemyNeedRMList_.Clear();
         return result;
     }
-
+    
     internal void DeleteEnemy(GameObject weakEnemy)
     {
-        var e = GameObject.Instantiate(weakEnemy, transform) as GameObject;
+        GameObject e = null;
+        if (weakEnemy.GetComponent<WeakEnemy>() != null)
+        {
+            e = GameObject.Instantiate(weakEnemyProto_, transform) as GameObject;
+        }
+        if (weakEnemy.GetComponent<AttackEnemy>() != null)
+        {
+            e = GameObject.Instantiate(attackEnemyProto_, transform) as GameObject;
+        }
+        if (weakEnemy.GetComponent<DefEnemy>() != null)
+        {
+            e = GameObject.Instantiate(defEnenmyProto_, transform) as GameObject;
+        }
         var pos = e.transform.position;
         pos.x = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
         pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
