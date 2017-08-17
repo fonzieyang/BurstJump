@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour {
 
+    const public float CHAR_RADIUS = 1.5f;
     static public CharacterControl instance;
 
     public Slider HPSlider;
@@ -64,6 +65,7 @@ public class CharacterControl : MonoBehaviour {
 
     // effect
     public GameObject explosiveEffect;
+    public GameObject bigExpEffect;
 
 
     float GetCurG()
@@ -247,7 +249,9 @@ public class CharacterControl : MonoBehaviour {
 
     void DoExplosive()
     {
-        
+        bigExpEffect.SetActive(false);
+        bigExpEffect.SetActive(true);
+        // TODO:
     }
 
     void Die()
