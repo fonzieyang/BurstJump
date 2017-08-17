@@ -31,6 +31,14 @@ public class EnemyCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        for (int i = 0; i < 50; i++)
+        {
+            var e = Instantiate(weakEnemyProto_, transform);
+            var pos = e.transform.position;
+            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            e.transform.position = pos;
+        }
 
     }
 
@@ -58,12 +66,14 @@ public class EnemyCreator : MonoBehaviour {
         }
     }
 
-    public void CheckAttack(AttackInfo ai)
+    public bool CheckAttack(AttackInfo ai)
     {
+        bool result = false;
         foreach (var e in enemyList_)
         {
             var enemy = e.GetComponent<Enemy>();
-            enemy.CheckAttack(ai);
+            result |= enemy.CheckAttack(ai);
         }
+        return result;
     }
 }

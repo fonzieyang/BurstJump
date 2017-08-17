@@ -79,22 +79,25 @@ public class WeakEnemy : Enemy
         isFleeting_ = true;
         var dir = transform.position - characterPos;
         float angle = Vector3.Angle(new Vector3(1, 0, 0), dir);
-        angle += Random.Range(-90, 90);
+        angle += Random.Range(-10, 10);
         movingDircetion_.z = Mathf.Sin(angle * Mathf.Rad2Deg);
         movingDircetion_.x = Mathf.Sin(angle * Mathf.Rad2Deg);
         transform.forward = movingDircetion_;
     }
 
-    public override void CheckAttack(AttackInfo ai)
+    public override bool CheckAttack(AttackInfo ai)
     {
+        bool result = false;
         if (ai.attackType == AttackType.normal)
         {
             var dis = ai.position - transform.position;
             dis.y = 0;
             if (dis.magnitude< ai.impactWaveRadius) {
+                result = true;
                 EnemyCreator.instance_.EnemyKilled(gameObject);
             }
         }
+        return result;
     }
 
     public override void Recreate()

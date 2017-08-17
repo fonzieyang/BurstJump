@@ -16,6 +16,6 @@ public struct AttackInfo
 
 public abstract class Enemy : MonoBehaviour
 {
-    public abstract void CheckAttack( AttackInfo ai);
+    public abstract bool CheckAttack( AttackInfo ai);
     public abstract void Recreate();
 }
