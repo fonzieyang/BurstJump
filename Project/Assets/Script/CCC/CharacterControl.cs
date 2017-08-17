@@ -37,11 +37,13 @@ public class CharacterControl : MonoBehaviour {
     State state = State.Stay;
     float timeline = 0;
     Vector3 move;
-    int hp;
+
     float realHeight;
     float vSpeed;
     [System.NonSerialized]
     public Transform trans;
+    [SerializeField]
+    int hp;
     [SerializeField]
     float currentG;
     [SerializeField]
@@ -52,6 +54,20 @@ public class CharacterControl : MonoBehaviour {
     float GetCurG()
     {
         return currentG + attackAcc * attackBonusGFactor;
+    }
+
+    public void ModifyHp(int hpDelta)
+    {
+        hp += hpDelta;
+        if (hp <= 0)
+        {
+            Die();
+        }
+
+        if (hp > hpMax)
+        {
+            hp = hpMax;
+        }
     }
 
 
@@ -186,6 +202,11 @@ public class CharacterControl : MonoBehaviour {
     }
 
     void DoExplosive()
+    {
+        
+    }
+
+    void Die()
     {
         
     }
