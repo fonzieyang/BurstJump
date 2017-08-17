@@ -27,7 +27,7 @@ public class AttackEnemy : Enemy
         p.z = Random.Range(EnemyCreator.MAP_LEFT, EnemyCreator.MAP_RIGHT);
         transform.position = p;
         lastPositionUpdateTime_ = Time.time;
-        anim.SetFloat("Forward", 1);
+        Run();
     }
 
     void UpdateDirection()
@@ -49,7 +49,8 @@ public class AttackEnemy : Enemy
             if (Time.time > attackStartTime_ + 2)
             {
                 isAttacking_ = false;
-                anim.SetBool("Attack", false);
+                BasicAttack();
+                Run();
             }
             else
             {
@@ -57,8 +58,8 @@ public class AttackEnemy : Enemy
                 return;
             }
         }
-
-		if (Time.time > nextDirectionUpdateTime_)
+        
+        if (Time.time > nextDirectionUpdateTime_)
         {
             UpdateDirection();
         }
@@ -99,9 +100,12 @@ public class AttackEnemy : Enemy
                 var dir = characterPos - transform.position;
                 dir.y = 0;
                 transform.forward = dir;
-                anim.SetBool("Attack", true);
+                BasicAttack();
                 isAttacking_ = true;
                 attackStartTime_ = Time.time;
+                var b = Instantiate(bulletProto_, null);
+                var bullet = b.GetComponent<Bullet>();
+                bullet.Shooted(transform.position);
             }
         }
         if (isFleeting_ && (characterPos - transform.position).magnitude > fleetLen_)
@@ -141,5 +145,54 @@ public class AttackEnemy : Enemy
     {
         isFleeting_ = false;
         return;
+    }
+
+    int scream;
+    int basicAttack;
+    int getHit;
+    int walk;
+    int die;
+    int run;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        scream = Animator.StringToHash("Scream");
+        basicAttack = Animator.StringToHash("Basic Attack");
+        getHit = Animator.StringToHash("Get Hit");
+        walk = Animator.StringToHash("Walk");
+        die = Animator.StringToHash("Die");
+        run = Animator.StringToHash("Run");
+    }
+
+
+    public void Scream()
+    {
+        anim.SetTrigger(scream);
+    }
+
+    public void BasicAttack()
+    {
+        anim.SetTrigger(basicAttack);
+    }
+
+    public void GetHit()
+    {
+        anim.SetTrigger(getHit);
+    }
+
+    public void Walk()
+    {
+        anim.SetTrigger(walk);
+    }
+
+    public void Die()
+    {
+        anim.SetTrigger(die);
+    }
+
+    public void Run()
+    {
+        anim.SetTrigger(run);
     }
 }
