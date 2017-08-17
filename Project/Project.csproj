@@ -159,6 +159,9 @@
     <Compile Include="Assets\Script\Scene\BreakObj.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\KY_effects\Quest and RPG FX\ReadMe.txt" />
+    <None Include="Assets\KY_effects\Quest and RPG FX\shader\myDistorsion.shader" />
+    <None Include="Assets\KY_effects\Quest and RPG FX\shader\myDistorsionNN.shader" />
     <None Include="Assets\Magical\Sources\Shader\Rimlight.shader" />
     <None Include="Assets\Mesh Explosion\Read Me.txt" />
     <None Include="Assets\Mirza Beig\README - Advanced Particle Scaler.txt" />

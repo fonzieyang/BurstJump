@@ -130,6 +130,7 @@ public class WeakEnemy : Enemy
     public override void Recreate()
     {
         isFleeting_ = false;
+        EnemyCreator.instance_.DeleteEnemy(gameObject);
         return;
     }
 

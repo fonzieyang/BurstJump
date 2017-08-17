@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,10 +17,10 @@ public class EnemyCreator : MonoBehaviour {
     public const int MAP_LEFT = -20;
     public const int MAP_RIGHT = 20;
 
-    public Object weakEnemyProto_;
-    public Object attackEnemyProto_;
-    public Object defEnenmyProto_;
-    public Object bossProto_;
+    public GameObject weakEnemyProto_;
+    public GameObject attackEnemyProto_;
+    public GameObject defEnenmyProto_;
+    public GameObject bossProto_;
     public List<GameObject> enemyList_ = new List<GameObject>();
     public int enemyNum_;
 
@@ -36,8 +37,8 @@ public class EnemyCreator : MonoBehaviour {
         {
             var e = GameObject.Instantiate(weakEnemyProto_, transform) as GameObject;
             var pos = e.transform.position;
-            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
-            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            pos.x = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
             e.transform.position = pos;
             e.SetActive(true);
         }
@@ -45,8 +46,8 @@ public class EnemyCreator : MonoBehaviour {
         {
             var e = GameObject.Instantiate(defEnenmyProto_, transform) as GameObject;
             var pos = e.transform.position;
-            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
-            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            pos.x = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
             e.transform.position = pos;
             e.SetActive(true);
         }
@@ -54,8 +55,8 @@ public class EnemyCreator : MonoBehaviour {
         {
             var e = GameObject.Instantiate(attackEnemyProto_, transform) as GameObject;
             var pos = e.transform.position;
-            pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
-            pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
+            pos.x = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
+            pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
             e.transform.position = pos;
             e.SetActive(true);
         }
@@ -76,8 +77,8 @@ public class EnemyCreator : MonoBehaviour {
     public void EnemyKilled(GameObject enemy)
     {
         var pos = enemy.transform.position;
-        pos.x = Random.Range(MAP_HIGH, MAP_LOW);
-        pos.z = Random.Range(MAP_LEFT, MAP_RIGHT);
+        pos.x = UnityEngine.Random.Range(MAP_HIGH, MAP_LOW);
+        pos.z = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
         enemy.transform.position = pos;
         Enemy e = enemy.GetComponent<Enemy>();
         if (e != null)
@@ -98,5 +99,16 @@ public class EnemyCreator : MonoBehaviour {
             }
         }
         return result;
+    }
+
+    internal void DeleteEnemy(GameObject weakEnemy)
+    {
+        var e = GameObject.Instantiate(weakEnemy, transform) as GameObject;
+        var pos = e.transform.position;
+        pos.x = UnityEngine.Random.Range(MAP_LEFT, MAP_RIGHT);
+        pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
+        e.transform.position = pos;
+        e.SetActive(true);
+        enemyList_.Remove(weakEnemy);
     }
 }
