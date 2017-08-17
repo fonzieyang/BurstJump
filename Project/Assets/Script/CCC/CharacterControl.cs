@@ -300,7 +300,7 @@ public class CharacterControl : MonoBehaviour {
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
-        //BreakMgr.instance.CheckObj(trans.position, hitRadius);
+        BreakMgr.instance.CheckObj(trans.position, hitRadius);
 
         int num = EnemyCreator.instance_.CheckAttack(atk);
 
