@@ -18,7 +18,9 @@ public class Bullet : MonoBehaviour {
     public void Shooted(Vector3 startPos)
     {
         var characterPos = CharacterControl.instance.transform.position;
-        dir_ = (characterPos - startPos).normalized;
+        dir_ = (characterPos - startPos);
+        dir_.y = 0;
+        dir_ = dir_.normalized;
         transform.position = startPos;
         lastUpdateTime_ = Time.time;
     }
@@ -34,6 +36,7 @@ public class Bullet : MonoBehaviour {
         }
         transform.position = pos;
         var dis = transform.position - CharacterControl.instance.transform.position;
+        dis.y = 0;
         if (dis.magnitude < effectRange_)
         {
             // boom
