@@ -67,8 +67,16 @@ public class InputController : MonoBehaviour {
 
         if (isMove)
         {
-            move.Normalize();
-            character.Move(move);
+            bool isSprint = Input.GetButtonDown("Fire2");
+            if (isSprint)
+            {
+                character.Sprint(move);
+            }
+            else
+            {
+                move.Normalize();
+                character.Move(move);
+            }
         }
 
 
@@ -79,12 +87,5 @@ public class InputController : MonoBehaviour {
         {
             character.Down();
         }
-
-        bool isSprint = Input.GetButtonDown("Fire2");
-        if (isSprint)
-        {
-            character.Sprint();
-        }
-
     }
 }

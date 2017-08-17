@@ -35,6 +35,7 @@ public class CharacterControl : MonoBehaviour {
         JumpUp,
         JumpDown,
         Stay,
+        Sprint,
     }
 
     // role state
@@ -101,10 +102,32 @@ public class CharacterControl : MonoBehaviour {
         currentG = g;
         currentHSpeed = horizontalSpeed;
     }
-
-    internal void Sprint()
+    
+    float startSprintTime_;
+    float lastSprintUpdateTime_;
+    float sprintTime_ = 0.8f;
+    Vector3 sprintDir_;
+    public float sprintSpeed_ = 10;
+    
+    bool needSprint_ = false;
+    internal void Sprint(Vector3 dir)
     {
-        throw new NotImplementedException();
+        sprintDir_ = dir;
+        if (state == State.Stay)
+        {
+            StartSprint();
+        } else if(state == State.JumpUp || state == State.JumpDown)
+        {
+            needSprint_ = true;
+        }
+    }
+
+    public void StartSprint()
+    {
+        state = State.Sprint;
+        startSprintTime_ = Time.time;
+        lastSprintUpdateTime_ = Time.time;
+        needSprint_ = false;
     }
 
     public void Move(Vector3 m)
@@ -152,8 +175,16 @@ public class CharacterControl : MonoBehaviour {
                             DoExplosive();
                         }
 
-                        SetState(State.Stay);
-                        ItemMgr.instance.CheckPick(trans.position);
+                        if (needSprint_)
+                        {
+                            StartSprint();
+                            SetState(State.Sprint);
+                        }
+                        else
+                        {
+                            SetState(State.Stay);
+                            ItemMgr.instance.CheckPick(trans.position);
+                        }
                     }
                 }
                 break;
@@ -165,6 +196,27 @@ public class CharacterControl : MonoBehaviour {
                     if (move != Vector3.zero)
                     {
                         SetState(State.JumpUp);
+                    }
+                }
+                break;
+            case State.Sprint:
+                {
+                    var t = Time.time - lastSprintUpdateTime_;
+                    var dist = t * sprintSpeed_ * sprintDir_;
+                    dist += transform.position;
+                    if (dist.x < EnemyCreator.MAP_LEFT || dist.x > EnemyCreator.MAP_RIGHT
+                        || dist.z < EnemyCreator.MAP_LEFT || dist.z > EnemyCreator.MAP_RIGHT)
+                    {
+                        state = State.Stay;
+                    }
+                    else
+                    {
+                        transform.position = dist;
+                        lastSprintUpdateTime_ = Time.time;
+                        if (lastSprintUpdateTime_ > startSprintTime_ + sprintTime_)
+                        {
+                            state = State.Stay;
+                        }
                     }
                 }
                 break;
@@ -240,7 +292,7 @@ public class CharacterControl : MonoBehaviour {
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
-        BreakMgr.instance.CheckObj(trans.position, hitRadius);
+        //BreakMgr.instance.CheckObj(trans.position, hitRadius);
 
         return EnemyCreator.instance_.CheckAttack(atk) != 0;
     }
