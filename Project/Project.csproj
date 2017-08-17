@@ -75,12 +75,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ememy.cs" />
-    <Compile Include="Assets\EmemyCreator.cs" />
     <Compile Include="Assets\Script\CCC\CameraController.cs" />
     <Compile Include="Assets\Script\CCC\CharacterControl.cs" />
     <Compile Include="Assets\Script\CCC\InputController.cs" />
-    <Compile Include="Assets\WeakEnemy.cs" />
+    <Compile Include="Assets\Script\Enemy\Ememy.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyCreator.cs" />
+    <Compile Include="Assets\Script\Enemy\WeakEnemy.cs" />
+    <Compile Include="Assets\Script\Item\ItemBase.cs" />
+    <Compile Include="Assets\Script\Item\ItemMgr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

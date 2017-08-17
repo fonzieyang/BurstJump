@@ -10,6 +10,7 @@ public enum AttackType
 public struct AttackInfo
 {
     public Vector3 position;
+    public float impactWaveRadius;
     public AttackType attackType;
 }
 

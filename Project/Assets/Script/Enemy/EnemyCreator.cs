@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum EnemyType
 {
     weak,
@@ -21,20 +20,29 @@ public class EnemyCreator : MonoBehaviour {
     public GameObject attackEnemyProto_;
     public GameObject defEnenmyProto_;
     public GameObject bossProto_;
-    public GameObject[] enemyList_;
+    public List<GameObject> enemyList_ = new List<GameObject>();
 
     static public EnemyCreator instance_;
 
-    // Use this for initialization
-    void Start () {
+    void Awake()
+    {
         instance_ = this;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		// create enemy logic here
 
-	}
+    // Use this for initialization
+    void Start () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // create enemy logic here
+    }
+
+    public void RegisetEnemy(GameObject enemy)
+    {
+        enemyList_.Add(enemy);
+    }
 
     public void EnemyKilled(GameObject enemy)
     {
@@ -46,6 +54,15 @@ public class EnemyCreator : MonoBehaviour {
         if (e != null)
         {
             e.Recreate();
+        }
+    }
+
+    public void CheckAttack(AttackInfo ai)
+    {
+        foreach (var e in enemyList_)
+        {
+            var enemy = e.GetComponent<Enemy>();
+            enemy.CheckAttack(ai);
         }
     }
 }
