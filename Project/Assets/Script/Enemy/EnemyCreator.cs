@@ -31,7 +31,7 @@ public class EnemyCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 1; i++)
         {
             var e = Instantiate(weakEnemyProto_, transform);
             var pos = e.transform.position;

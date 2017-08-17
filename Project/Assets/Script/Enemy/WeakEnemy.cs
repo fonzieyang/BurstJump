@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeakEnemy : Enemy
 {
     Vector3 movingDircetion_;
+    public Animator anim;
     float speed_;
     float nextDirectionUpdateTime_;
     float lastPositionUpdateTime_;
@@ -23,6 +24,7 @@ public class WeakEnemy : Enemy
         p.z = Random.Range(EnemyCreator.MAP_LEFT, EnemyCreator.MAP_RIGHT);
         transform.position = p;
         lastPositionUpdateTime_ = Time.time;
+        anim.SetFloat("Forward", 1);
     }
 
     void UpdateDirection()
