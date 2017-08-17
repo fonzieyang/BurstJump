@@ -78,10 +78,12 @@
     <Compile Include="Assets\Script\CCC\CameraController.cs" />
     <Compile Include="Assets\Script\CCC\CharacterControl.cs" />
     <Compile Include="Assets\Script\CCC\InputController.cs" />
+    <Compile Include="Assets\Script\Enemy\AnimationEvent.cs" />
     <Compile Include="Assets\Script\Enemy\Bullet.cs" />
     <Compile Include="Assets\Script\Enemy\Ememy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCreator.cs" />
     <Compile Include="Assets\Script\Enemy\WeakEnemy.cs" />
+    <Compile Include="Assets\Script\Item\HPItem.cs" />
     <Compile Include="Assets\Script\Item\ItemBase.cs" />
     <Compile Include="Assets\Script\Item\ItemMgr.cs" />
   </ItemGroup>

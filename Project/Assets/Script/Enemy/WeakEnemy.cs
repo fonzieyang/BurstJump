@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeakEnemy : Enemy
 {
+    public GameObject bulletProto_;
     Vector3 movingDircetion_;
     public Animator anim;
     float speed_;
@@ -11,10 +12,13 @@ public class WeakEnemy : Enemy
     float lastPositionUpdateTime_;
     bool isFleeting_ = false;
     float fleetLen_ = 2;
-    float attackRange_ = 5;
+    float attackRange_ = 10;
     float attackCdTime_ = 3;
     float lastAttackTime_ = 0;
+    bool isAttacking_ = false;
+    float attackStartTime_ = 0;
     uint hp_;
+
 
     // Use this for initialization
     void Start () {
@@ -25,6 +29,9 @@ public class WeakEnemy : Enemy
         transform.position = p;
         lastPositionUpdateTime_ = Time.time;
         anim.SetFloat("Forward", 1);
+        AnimationClip clip;
+
+
     }
 
     void UpdateDirection()
@@ -40,6 +47,21 @@ public class WeakEnemy : Enemy
 	
 	// Update is called once per frame
 	void Update () {
+        if (isAttacking_ == true)
+        {
+
+            if (Time.time > attackStartTime_ + 2)
+            {
+                isAttacking_ = false;
+                anim.SetBool("Attack", false);
+            }
+            else
+            {
+                lastPositionUpdateTime_ = Time.time;
+                return;
+            }
+        }
+
 		if (Time.time > nextDirectionUpdateTime_)
         {
             UpdateDirection();
@@ -48,15 +70,24 @@ public class WeakEnemy : Enemy
         var t = Time.time - lastPositionUpdateTime_;
         var pos = transform.position;
         pos += movingDircetion_* t;
-        #if false
+        int counter = 0;
         while (pos.x < EnemyCreator.MAP_LOW + 0.1f || pos.x > EnemyCreator.MAP_HIGH - 0.1f || pos.z < EnemyCreator.MAP_LEFT+0.1f || pos.z > EnemyCreator.MAP_RIGHT + 0.1f)
         {
             UpdateDirection();
             t = Time.time - lastPositionUpdateTime_;
             pos = transform.position;
             pos += movingDircetion_ * t;
+            counter++;
+            if (counter > 3)
+            {
+                movingDircetion_ = -transform.position;
+                movingDircetion_ = movingDircetion_.normalized;
+                t = Time.time - lastPositionUpdateTime_;
+                pos = transform.position;
+                pos += movingDircetion_ * t;
+                break;
+            }
         }
-        #endif
         transform.position = pos;
         lastPositionUpdateTime_ = Time.time;
         var characterPos = CharacterControl.instance.transform.position;
@@ -69,6 +100,12 @@ public class WeakEnemy : Enemy
             } else if (dis < attackRange_ && lastAttackTime_ + attackCdTime_ < Time.time)
             {
                 lastAttackTime_ = Time.time;
+                var dir = characterPos - transform.position;
+                dir.y = 0;
+                transform.forward = dir;
+                anim.SetBool("Attack", true);
+                isAttacking_ = true;
+                attackStartTime_ = Time.time;
             }
         }
         if (isFleeting_ && (characterPos - transform.position).magnitude > fleetLen_)
