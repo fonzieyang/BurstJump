@@ -86,13 +86,16 @@ public class EnemyCreator : MonoBehaviour {
         }
     }
 
-    public bool CheckAttack(AttackInfo ai)
+    public int CheckAttack(AttackInfo ai)
     {
-        bool result = false;
+        int result = 0;
         foreach (var e in enemyList_)
         {
             var enemy = e.GetComponent<Enemy>();
-            result |= enemy.CheckAttack(ai);
+            if(enemy.CheckAttack(ai))
+            {
+                result++;
+            }
         }
         return result;
     }
