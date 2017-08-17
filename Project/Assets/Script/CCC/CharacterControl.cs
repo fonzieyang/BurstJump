@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour {
 
-    const public float CHAR_RADIUS = 1.5f;
+    const float CHAR_RADIUS = 1.5f;
     static public CharacterControl instance;
 
     public Slider HPSlider;
