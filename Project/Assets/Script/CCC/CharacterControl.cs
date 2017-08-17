@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -105,6 +106,11 @@ public class CharacterControl : MonoBehaviour {
         instance = this;
         currentG = g;
         currentHSpeed = horizontalSpeed;
+    }
+
+    internal void Sprint()
+    {
+        throw new NotImplementedException();
     }
 
     public void Move(Vector3 m)
@@ -240,7 +246,7 @@ public class CharacterControl : MonoBehaviour {
         explosiveEffect.SetActive(false);
         explosiveEffect.SetActive(true);
 
-        BreakMgr.instance.CheckObj(trans.position, hitRadius);
+        //BreakMgr.instance.CheckObj(trans.position, hitRadius);
 
         int num = EnemyCreator.instance_.CheckAttack(atk);
 
