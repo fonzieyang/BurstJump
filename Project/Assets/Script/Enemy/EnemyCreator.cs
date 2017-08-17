@@ -21,6 +21,7 @@ public class EnemyCreator : MonoBehaviour {
     public Object defEnenmyProto_;
     public Object bossProto_;
     public List<GameObject> enemyList_ = new List<GameObject>();
+    public int enemyNum_;
 
     static public EnemyCreator instance_;
 
@@ -31,13 +32,14 @@ public class EnemyCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < enemyNum_; i++)
         {
             var e = GameObject.Instantiate(weakEnemyProto_, transform) as GameObject;
             var pos = e.transform.position;
             pos.x = Random.Range(MAP_LEFT, MAP_RIGHT);
             pos.z = Random.Range(MAP_RIGHT, MAP_HIGH);
             e.transform.position = pos;
+            e.SetActive(true);
         }
 
     }
