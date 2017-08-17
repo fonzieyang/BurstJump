@@ -345,8 +345,8 @@ public class CharacterControl : MonoBehaviour {
         int singleDigit = (continueHit % 100) % 10;
 
 
-        TenDigitImage.sprite = Resources.Load("Resources/Image/Number" + tenDigit.ToString(), typeof(Sprite)) as Sprite;
-        SingltDigitImage.sprite = Resources.Load("Resources/Image/Number" + singleDigit.ToString(), typeof(Sprite)) as Sprite;
+        //TenDigitImage.sprite = Resources.Load("Resources/Image/Number" + tenDigit.ToString(), typeof(Sprite)) as Sprite;
+        //SingltDigitImage.sprite = Resources.Load("Resources/Image/Number" + singleDigit.ToString(), typeof(Sprite)) as Sprite;
 
 
 
