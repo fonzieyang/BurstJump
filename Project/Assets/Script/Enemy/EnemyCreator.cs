@@ -22,6 +22,7 @@ public class EnemyCreator : MonoBehaviour {
     public GameObject defEnenmyProto_;
     public GameObject bossProto_;
     public List<GameObject> enemyList_ = new List<GameObject>();
+    public List<GameObject> enemyNeedRMList_ = new List<GameObject>();
     public int enemyNum_;
 
     static public EnemyCreator instance_;
@@ -98,6 +99,11 @@ public class EnemyCreator : MonoBehaviour {
                 result++;
             }
         }
+        foreach (var e in enemyNeedRMList_)
+        {
+            enemyList_.Remove(e);
+        }
+        enemyNeedRMList_.Clear();
         return result;
     }
 
@@ -109,6 +115,6 @@ public class EnemyCreator : MonoBehaviour {
         pos.z = UnityEngine.Random.Range(MAP_RIGHT, MAP_HIGH);
         e.transform.position = pos;
         e.SetActive(true);
-        enemyList_.Remove(weakEnemy);
+        enemyNeedRMList_.Add(weakEnemy);
     }
 }
